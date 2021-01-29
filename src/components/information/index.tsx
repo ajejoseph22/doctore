@@ -7,13 +7,15 @@ const InformationWrapper = styled.div`
   font-weight: bold;
 `;
 
-const Information: FC<{ winner: string | null; xIsNext: boolean }> = ({
-  winner,
-  xIsNext,
-}) => (
+const Information: FC<{
+  winner: string | null;
+  xIsNext: boolean;
+  isDraw: boolean;
+}> = ({ winner, xIsNext, isDraw }) => (
   <InformationWrapper>
+    {isDraw && <p>It's a draw!</p>}
     {winner && <p>Winner is {winner}</p>}
-    {!winner && <p>{`${xIsNext ? "X" : "O"} to play`}</p>}
+    {!winner && !isDraw && <p>{`${xIsNext ? "X" : "O"} to play`}</p>}
   </InformationWrapper>
 );
 export default Information;
